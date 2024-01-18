@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:15.5
+    container_name: postgres
+    volumes:
+      - stammtisch:/var/lib/postgresql/data
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test@test.de
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  stammtisch:
+  pgadmin-data:
