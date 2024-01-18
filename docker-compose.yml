@@ -3,7 +3,7 @@ version: '3'
 services:
   database:
     image: postgres:15.5
-    container_name: postgres
+    container_name: stammtisch_data
     volumes:
       - stammtisch:/var/lib/postgresql/data
     restart: unless-stopped
@@ -13,9 +13,9 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
 
-pgadmin:
+  pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin4_container
+    container_name: pgadmin4_stammtisch
     restart: always
     ports:
       - "8888:80"
@@ -23,8 +23,8 @@ pgadmin:
       PGADMIN_DEFAULT_EMAIL: test@test.de
       PGADMIN_DEFAULT_PASSWORD: postgres
     volumes:
-      - pgadmin-data:/var/lib/pgadmin
+      - pgadmin-stammtisch:/var/lib/pgadmin
 
 volumes:
   stammtisch:
-  pgadmin-data:
+  pgadmin-stammtisch:

@@ -1,16 +1,22 @@
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <div
+    class="flex min-h-screen flex-col"
+  >
+    <header>
+      <div
+        class="top-0 h-[60px] w-full shadow-md"
+      >
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+        </nav>
+      </div>
+    </header>
+    <div
+      class="relative grow-[1]"
+    >
+      <RouterView />
     </div>
-  </header>
-
-  <RouterView />
+  </div>
 </template>
 
 <script setup lang="ts">
