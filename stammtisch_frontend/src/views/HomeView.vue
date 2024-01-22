@@ -3,25 +3,26 @@
     <div class="flex h-2 w-3 flex-1 rounded border-2 shadow-md">
       Logged in!
     </div>
-  <DrinkCompareTable
-    v-if="drinksData"
-    :users="users"
-    :series-data="series"
-  />
-  <button
-    class="p-2 bg-slate-300 rounded-lg shadow-md"
-    @click="updateChart"
-  >
-    Update
-  </button>
+    <DrinkCompareChart
+      v-if="drinksData"
+      :users="users"
+      :series-data="series"
+      :title="'Cumulative Drinks'"
+    />
+    <button
+      class="p-2 bg-slate-300 rounded-lg shadow-md"
+      @click="updateChart"
+    >
+      Update
+    </button>
   </main>
 </template>
 
 <script setup lang="ts">
-import DrinkCompareTable from '@/components/charts/DrinkCompareChart.vue';
+import DrinkCompareChart from '@/components/charts/DrinkCompareChart.vue';
 import { computed, onMounted, ref } from 'vue';
-import { type DrinksData, useMockBeerData } from '@/mockStore/MockBeerData';
-import type { StackedBar } from '@/interfaces/barChartSeries';
+import { type DrinksData, useMockBeerData } from '@/stores/MockBeerData';
+import type { StackedBar } from '@/interfaces/BarCharts';
 
 const { DrinksState, generateUserData, getDrinkData } = useMockBeerData();
 
@@ -85,4 +86,5 @@ function updateChart() {
   // series.value[0].data = newData;
   generateUserData(['Felix', 'Igi', 'Levi', 'Rafi', 'Stefan', 'Sebi'], 5);
   drinksData.value = getDrinkData(DrinksState.data);
+}
 </script>

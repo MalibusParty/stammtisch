@@ -1,5 +1,5 @@
 export interface StackedBar {
-    naem: string,
+    name: string,
     type: string,
     data: number[]
 }
