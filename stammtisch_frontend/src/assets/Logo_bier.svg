@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="165.58705"
+   height="165.58705"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   sodipodi:docbase="/mnt/windows_D/linux_saves/Gimp_works"
+   sodipodi:docname="logo_bière.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.0"
+   inkscape:export-filename="/mnt/windows_D/linux_saves/Gimp_works/bière_logo_v2.png"
+   inkscape:export-xdpi="133.91742"
+   inkscape:export-ydpi="133.91742">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3918">
+      <stop
+         style="stop-color:#cdcdcd;stop-opacity:1;"
+         offset="0"
+         id="stop3920" />
+      <stop
+         style="stop-color:#e6e6e6;stop-opacity:0.79591835;"
+         offset="1"
+         id="stop3922" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3910">
+      <stop
+         style="stop-color:#e0932b;stop-opacity:1;"
+         offset="0"
+         id="stop3912" />
+      <stop
+         style="stop-color:#e0932b;stop-opacity:0.48979592;"
+         offset="1"
+         id="stop3914" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3902">
+      <stop
+         style="stop-color:#e0932b;stop-opacity:1;"
+         offset="0"
+         id="stop3904" />
+      <stop
+         style="stop-color:#e0932b;stop-opacity:0.56122446;"
+         offset="1"
+         id="stop3906" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3884">
+      <stop
+         style="stop-color:#bb2828;stop-opacity:1;"
+         offset="0"
+         id="stop3886" />
+      <stop
+         id="stop3892"
+         offset="0.5"
+         style="stop-color:#ff6969;stop-opacity:0.49803922;" />
+      <stop
+         style="stop-color:#535353;stop-opacity:0;"
+         offset="1"
+         id="stop3888" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3868">
+      <stop
+         style="stop-color:#b55858;stop-opacity:1;"
+         offset="0"
+         id="stop3870" />
+      <stop
+         style="stop-color:#535353;stop-opacity:0;"
+         offset="1"
+         id="stop3872" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3910"
+       id="linearGradient3916"
+       x1="288.75851"
+       y1="585.104"
+       x2="328.49258"
+       y2="585.104"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3918"
+       id="linearGradient3924"
+       x1="291.58997"
+       y1="554.16187"
+       x2="325.65305"
+       y2="554.16187"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3910"
+       id="linearGradient3937"
+       gradientUnits="userSpaceOnUse"
+       x1="288.75851"
+       y1="585.104"
+       x2="328.49258"
+       y2="585.104" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3918"
+       id="linearGradient3939"
+       gradientUnits="userSpaceOnUse"
+       x1="291.58997"
+       y1="554.16187"
+       x2="325.65305"
+       y2="554.16187" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3910"
+       id="linearGradient3386"
+       gradientUnits="userSpaceOnUse"
+       x1="288.75851"
+       y1="585.104"
+       x2="328.49258"
+       y2="585.104" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3918"
+       id="linearGradient3388"
+       gradientUnits="userSpaceOnUse"
+       x1="291.58997"
+       y1="554.16187"
+       x2="325.65305"
+       y2="554.16187" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="102.25017"
+     inkscape:cy="40.462307"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showguides="true"
+     showgrid="false"
+     inkscape:window-width="818"
+     inkscape:window-height="819"
+     inkscape:window-x="108"
+     inkscape:window-y="71"
+     width="162.64px"
+     height="162.63753px"
+     inkscape:object-bbox="false" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer15"
+     inkscape:label="Contour"
+     style="display:inline"
+     transform="translate(-228.83138,-496.94348)">
+    <path
+       sodipodi:type="arc"
+       style="opacity:1;fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#8a6c65;stroke-width:5.45735312;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       id="path3926"
+       sodipodi:cx="328.5"
+       sodipodi:cy="602.11218"
+       sodipodi:rx="65.75"
+       sodipodi:ry="65.75"
+       d="M 394.25 602.11218 A 65.75 65.75 0 1 1  262.75,602.11218 A 65.75 65.75 0 1 1  394.25 602.11218 z"
+       transform="matrix(1.051059,0,0,1.051059,-32.647882,-53.118247)"
+       inkscape:export-filename="/home/caribou/Gimp_works/Projet_bière_logo4.png"
+       inkscape:export-xdpi="133.91742"
+       inkscape:export-ydpi="133.91742" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Contour ext"
+     style="display:inline"
+     transform="translate(-228.83138,-496.94348)">
+    <path
+       sodipodi:type="arc"
+       style="opacity:1;fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#8a6c65;stroke-width:1.29333389;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       id="path3278"
+       sodipodi:cx="328.5"
+       sodipodi:cy="602.11218"
+       sodipodi:rx="65.75"
+       sodipodi:ry="65.75"
+       d="M 394.25 602.11218 A 65.75 65.75 0 1 1  262.75,602.11218 A 65.75 65.75 0 1 1  394.25 602.11218 z"
+       transform="matrix(1.2247417,0,0,1.2247417,-90.702731,-157.69486)"
+       inkscape:export-filename="/home/caribou/Gimp_works/Projet_bière_logo4.png"
+       inkscape:export-xdpi="133.91742"
+       inkscape:export-ydpi="133.91742" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="Bière v2"
+     style="display:inline"
+     transform="translate(-228.83138,-496.94348)">
+    <g
+       style="display:inline"
+       id="g3378"
+       transform="matrix(1.1952412,0,0,1.1952412,-58.362383,-111.6212)"
+       inkscape:export-filename="/home/caribou/Gimp_works/Projet_bière_logo4.png"
+       inkscape:export-xdpi="133.91742"
+       inkscape:export-ydpi="133.91742">
+      <path
+         d="M 293.87421,544.57004 C 293.87421,544.57004 272.36296,571.94778 293.87421,612.28137 L 311.23001,612.28137 M 323.41798,544.57004 C 323.41798,544.57004 344.92925,571.94778 323.41798,612.28137 L 306.06225,612.28137 M 331.85384,562.02395 C 352.29359,553.8554 348.67569,606.7326 329.96892,600.32776"
+         style="opacity:1;fill:#000000;fill-opacity:0;fill-rule:evenodd;stroke:#8a6c65;stroke-width:3.99483252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;display:inline"
+         id="path3380" />
+      <path
+         id="path3382"
+         d="M 290.87662,562.27639 C 290.59712,563.28116 290.2257,564.17142 289.98492,565.30817 C 287.78203,575.7087 287.77214,590.28552 296.58356,607.93161 L 310.67242,607.93161 L 320.65957,607.93161 C 330.35245,588.51968 329.38573,572.68426 326.54474,562.27639 L 290.87662,562.27639 z "
+         style="opacity:1;fill:url(#linearGradient3386);fill-opacity:1;stroke:none;stroke-width:0.69999999;stroke-miterlimit:4;stroke-opacity:1;display:inline" />
+      <path
+         id="path3384"
+         d="M 296.58356,548.90078 C 296.58355,548.90078 293.82041,552.74267 291.58997,559.42294 L 325.65305,559.42294 C 323.40469,552.66658 320.65957,548.90078 320.65957,548.90078 C 320.65955,548.90078 296.58356,548.90078 296.58356,548.90078 z "
+         style="opacity:0.78109454;fill:url(#linearGradient3388);fill-opacity:1;stroke-width:0.69999999;stroke-miterlimit:4;display:inline" />
+    </g>
+  </g>
+</svg>

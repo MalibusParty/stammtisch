@@ -2,6 +2,7 @@ package tech.felixruf.stammtisch.model;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.LinkedList;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,6 +15,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import lombok.*;
@@ -50,6 +52,12 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Getter
+    @Setter
+    @Builder.Default
+    @OneToMany(mappedBy = "user")
+    private List<DrinkTransaction> drinkTransactions = new LinkedList<>();
 
     @Override
     public String toString() {

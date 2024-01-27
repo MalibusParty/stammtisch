@@ -1,9 +1,11 @@
 <template>
   <form
-    class="p-4 rounded-md shadow-md"
-    @submit.prevent="handleRegister"
+    class="p-4 rounded-lg bg-darkess shadow-md"
+    @submit.prevent=""
   >
-    <h2>Register</h2>
+    <h2 class="w-full text-center text-outline text-xl font-head font-bold">
+      Register
+    </h2>
     <InputLabel
       v-model="registerData.firstname"
       :label-visible="true"
@@ -29,11 +31,14 @@
       :required="true"
       :type="'password'"
     />
-    <input
-      class="p-2 bg-slate-400 rounded-md"
-      type="submit"
-      value="Registrieren"
+    <BasicButton
+      class="mt-5"
+      :type="ButtonType.BUTTON"
+      :outline="false"
+      @click="handleRegister"
     >
+      Login
+    </BasicButton>
   </form>
 </template>
 
@@ -41,6 +46,8 @@
 import InputLabel from '@/components/misc/InputLabel.vue';
 import { ref } from 'vue';
 import { useLogin } from '@/stores/loginStore';
+import BasicButton from '../misc/BasicButton.vue';
+import { ButtonType } from '@/enums/ButtonType';
 
 const { register } = useLogin();
 

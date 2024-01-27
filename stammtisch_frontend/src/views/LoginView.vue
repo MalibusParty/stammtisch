@@ -1,19 +1,33 @@
 <template>
   <div
-    class="max-w-[1200px] min-w-[320px]"
+    class="w-full flex flex-col items-center mt-4"
   >
-    <LoginForm
-      v-if="isLoginForm"
-    />
-    <RegisterForm
-      v-else
-    />
-    <button
-      class="mt-8"
-      @click="isLoginForm = !isLoginForm"
+    <div class="mb-4 w-fit flex flex-row">
+      <BasicButton
+        class="mt-8  mr-4 w-fit"
+        :outline="!isLoginForm"
+        @click="isLoginForm = true"
+      >
+        Einloggen
+      </BasicButton>
+      <BasicButton
+        class="mt-8 w-fit"
+        :outline="isLoginForm"
+        @click="isLoginForm = false"
+      >
+        Registrieren
+      </BasicButton>
+    </div>
+    <div
+      class="w-[300px] md:w-[450px]"
     >
-      {{ isLoginForm ? 'Registrieren' : 'Einloggen' }}
-    </button>
+      <LoginForm
+        v-if="isLoginForm"
+      />
+      <RegisterForm
+        v-else
+      />
+    </div>
   </div>
 </template>
 
@@ -23,6 +37,7 @@ import { useLogin } from '@/stores/loginStore';
 import LoginForm from '@/components/authorization/LoginForm.vue';
 import RegisterForm from '@/components/authorization/RegisterForm.vue';
 import router from '@/router';
+import BasicButton from '@/components/misc/BasicButton.vue';
 
 const { logout, authState } = useLogin();
 

@@ -1,9 +1,11 @@
 <template>
   <form
-    class="p-4 rounded-md shadow-md"
-    @submit.prevent="handleLogin"
+    class="p-4 rounded-lg bg-darkess shadow-md"
+    @submit.prevent=""
   >
-    <h2>Einloggen</h2>
+    <h2 class="w-full text-center text-outline text-xl font-head font-bold">
+      Einloggen
+    </h2>
     <InputLabel
       v-model="loginData.username"
       :label-visible="true"
@@ -17,11 +19,14 @@
       :required="true"
       :type="'password'"
     />
-    <input
-      class="p-2 bg-slate-400 rounded-md"
-      type="submit"
-      value="Login"
+    <BasicButton
+      class="mt-5"
+      :type="ButtonType.BUTTON"
+      :outline="false"
+      @click="handleLogin"
     >
+      Login
+    </BasicButton>
   </form>
 </template>
 
@@ -29,6 +34,8 @@
 import InputLabel from '@/components/misc/InputLabel.vue';
 import { ref } from 'vue';
 import { useLogin } from '@/stores/loginStore';
+import BasicButton from '../misc/BasicButton.vue';
+import { ButtonType } from '@/enums/ButtonType';
 
 const { login } = useLogin();
 

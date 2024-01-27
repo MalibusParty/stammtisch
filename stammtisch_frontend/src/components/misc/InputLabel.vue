@@ -3,12 +3,12 @@
     <label
       v-if="labelText !== '' && labelVisible"
       :for="labelText"
-      class="w-full px-4 text-start text-xs font-medium"
+      class="w-full px-4 text-start text-xs font-medium text-primary"
     >
       {{ labelText }}
     </label>
     <div
-      class="invalid flex h-[46px] w-full flex-row items-center overflow-hidden rounded-full border-2 border-solid px-4 py-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2"
+      class="invalid flex h-[46px] w-full flex-row items-center overflow-hidden rounded-full border-[1px] border-solid border-primary px-4 py-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/75 focus-visible:ring-offset-2"
     >
       <input
         :id="labelText"
@@ -18,7 +18,7 @@
         :placeholder="labelText"
         :min="min"
         :required="required"
-        class="w-full truncate border-none bg-none text-[14px] font-medium invalid:border-[#E02927] focus:outline-none"
+        class="w-full truncate border-none bg-[rgba(0,0,0,0)] text-[14px] text-primary font-medium invalid:border-autumn focus:outline-none focus:bg-transparent autofill:bg-transparent active:bg-transparent"
       >
       <XMarkIcon
         v-if="value !== '' && xButtonActive === true"
@@ -62,3 +62,15 @@ const value = computed({
   }
 });
 </script>
+
+<style scoped>
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffb4a7;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #23232329;
+}
+</style>

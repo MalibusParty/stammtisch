@@ -1,12 +1,11 @@
 <template>
-	<div
-		class="p-4 rounded-lg shadow-md"
-	>
-		<h3>
+	<div class="p-4 rounded-lg shadow-md bg-darkess max-w-[100%] md:max-w-[1100px]">
+		<h3
+			class="text-primary font-italic text-2xl"
+		>
 			{{ title }}
 		</h3>
 		<VueApexCharts
-			width="500"
 			type="bar"
 			:options="chartOptions"
 			:series="seriesData"
@@ -27,12 +26,22 @@ const props = defineProps<{
 
 const maxYAxis = ref(maxHeight());
 
+const chartHeight = computed(() => props.users.length * 75);
+
 const chartOptions = computed(() => {
 	return {
 		chart: {
 			id: 'stackedBarChart',
-			stacked: true
+			stacked: true,
+			foreColor: '#ffb4a7',
+      fontFamily: 'Roboto',
+      toolbar: {
+        show: false
+      }
 		},
+    tooltip: {
+      enabled: false
+    },
 		xaxis: {
 			categories: props.users
 		},
@@ -46,12 +55,28 @@ const chartOptions = computed(() => {
 		},
 		plotOptions: {
 			bar: {
-				columnWidth: '30%'
+				columnWidth: '30%',
+				horizontal: false
 			}
 		},
 		theme: {
 			palette: 'palette1'
-		}
+		},
+		responsive: [
+			{
+				breakpoint: 768,
+				options: {
+					plotOptions: {
+						bar: {
+							horizontal: true
+						}
+					},
+					chart: {
+						height: chartHeight.value
+					}
+				}
+			}
+		]
 	}
 });
 

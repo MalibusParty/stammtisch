@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    src: local('Roboto'), url('./font/Roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-style: bold;
+    src: local('Roboto'), url('./font/Roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Sansita';
+    font-weight: 400;
+    font-style: italic;
+    src: local('Sansita'), url('./font/Sansita/Sansita-Italic.ttf');
+}
+
+@font-face {
+    font-family: 'Sansita';
+    font-weight: 700;
+    font-style: bold;
+    src: local('Sansita'), url('./font/Sansita/Sansita-BlackItalic.ttf');
+}
+
+@font-face {
+    font-family: 'Alef';
+    font-weight: 400;
+    font-style: normal;
+    src: local('Alef'), url('./font/Alef/Alef-Regular.ttf');
+}

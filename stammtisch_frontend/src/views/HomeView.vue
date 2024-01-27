@@ -1,21 +1,21 @@
 <template>
-  <main>
-    <div class="flex h-2 w-3 flex-1 rounded border-2 shadow-md">
-      Logged in!
-    </div>
+  <div
+    class="w-full min-h-screen mt-4 flex flex-col items-center"
+  >
     <DrinkCompareChart
       v-if="drinksData"
+      class="w-full md:h-[80vh]"
       :users="users"
       :series-data="series"
       :title="'Cumulative Drinks'"
     />
     <button
-      class="p-2 bg-slate-300 rounded-lg shadow-md"
-      @click="updateChart"
+      class="p-2 bg-slate-300 rounded-lg shadow-md mt-4"
+      @click="getAllDrinks"
     >
-      Update
+      Get Drinks
     </button>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -23,12 +23,13 @@ import DrinkCompareChart from '@/components/charts/DrinkCompareChart.vue';
 import { computed, onMounted, ref } from 'vue';
 import { type DrinksData, useMockBeerData } from '@/stores/MockBeerData';
 import type { StackedBar } from '@/interfaces/BarCharts';
+import { useDrinks } from '@/stores/drinkStore';
 
 const { DrinksState, generateUserData, getDrinkData } = useMockBeerData();
+const { drinksState, getAllDrinks } = useDrinks();
 
 const drinksData = ref<DrinksData | null>(null);
 
-// const users = ['Felix', 'Igi', 'Levi'];
 const users = computed(() => {
   if (drinksData.value) {
     return Object.keys(drinksData.value)
@@ -73,17 +74,6 @@ const series = computed<StackedBar[]>(() => {
 });
 
 function updateChart() {
-  // const max = 90;
-  // const min = 5;
-  // const newData = series.value[0].data.map(() => Math.floor(Math.random() * (max - min + 1)) + min);
-  // const colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0"];
-
-  // chartOptions.value = {
-  //   ...chartOptions.value,
-  //   colors: [colors[Math.floor(Math.random() * colors.length)]]
-  // }
-
-  // series.value[0].data = newData;
   generateUserData(['Felix', 'Igi', 'Levi', 'Rafi', 'Stefan', 'Sebi'], 5);
   drinksData.value = getDrinkData(DrinksState.data);
 }
