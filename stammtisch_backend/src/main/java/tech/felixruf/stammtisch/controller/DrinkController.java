@@ -51,9 +51,21 @@ public class DrinkController {
     //     return new SomeData();
     // }
     
-    @PostMapping("/transactions")
+    @PostMapping("/transactions/all")
     public ResponseEntity<Boolean> postDrinkTransaction(@RequestBody List<DrinkTransactionDTO> drinkTransactions) {
-        boolean result = drinkService.addAllDrinkTransactions(drinkTransactions);
-        return ResponseEntity.ok(result);
+        for (DrinkTransactionDTO transactionDTO : drinkTransactions) {
+            logger.info("id: {}, count: {}, user: {}, date: {}",
+                transactionDTO.drink_id(),
+                transactionDTO.count(),
+                transactionDTO.username(),
+                transactionDTO.timestamp()
+            );
+        }
+        try {
+            boolean result = drinkService.addAllDrinkTransactions(drinkTransactions);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(false);
+        }
     }
 }

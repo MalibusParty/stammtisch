@@ -1,6 +1,6 @@
 <template>
   <button
-    class="w-full py-2 px-5 shadow-md font-bold font-italic rounded-full"
+    class="w-full rounded-full px-5 py-2 font-italic font-bold shadow-md"
     :class="outline ? 'text-primary bg-background border-[1px] border-primary active:bg-darkess' : 'bg-primary text-background active:bg-peach'"
     :type="type"
   >

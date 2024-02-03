@@ -1,7 +1,7 @@
 import getAllTransactions from "@/api/getAllTransactions";
 import postDrinkTransactions from "@/api/postDrinkTransaction";
 import type DrinkTransactionDTO from "@/interfaces/DrinkTransactionDTO";
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 
 const DrinkTransactionsState = ref<DrinkTransactionDTO[]>([]);
 

@@ -51,7 +51,7 @@ public class DrinkService {
         return drinkTransactionRepository.findAll();
     }
 
-    public boolean addAllDrinkTransactions(List<DrinkTransactionDTO> drinkTransactions) throws NullPointerException {
+    public boolean addAllDrinkTransactions(List<DrinkTransactionDTO> drinkTransactions) throws NullPointerException, IllegalArgumentException {
         Optional<User> optionalUser = userRepository.findByUsername(drinkTransactions.getFirst().username());
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -62,6 +62,7 @@ public class DrinkService {
                     transactions.add(createDrinkTransaction(optionalDrink.get(), user, drinkTransactionDTO.count(), drinkTransactionDTO.timestamp()));
                 }
             }
+            drinkTransactionRepository.saveAll(transactions);
             return true;
         }
 

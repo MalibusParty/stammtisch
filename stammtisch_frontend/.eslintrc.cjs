@@ -1,7 +1,6 @@
-import path from 'path'
-
 /* eslint-env node */
 require('@rushstack/eslint-patch/modern-module-resolution')
+require('path')
 
 module.exports = {
   root: true,
@@ -26,9 +25,12 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest'
   },
-  settings: {
-    tailwindcss: {
-      config: path.join(__dirname, './tailwind.config.js'),
-    },
-  },
+  plugins: [
+    'tailwindcss',
+  ],
+  // settings: {
+  //   tailwindcss: {
+  //     config: path.join(__dirname, './tailwind.config.js'),
+  //   },
+  // },
 }

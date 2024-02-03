@@ -1,7 +1,7 @@
 import getDrinks from "@/api/getDrinks";
 import postDrink from "@/api/postDrink";
 import type DrinkDTO from "@/interfaces/DrinkDTO";
-import { reactive, readonly, ref } from "vue";
+import { readonly, ref } from "vue";
 
 const drinksState = ref<DrinkDTO[]>([]);
 
@@ -18,11 +18,32 @@ async function createDrink(drink: DrinkDTO) {
     }
 }
 
+function getDrinkById(drinkId: number): DrinkDTO | undefined {
+    return drinksState.value.find(drink => drink.drink_id === drinkId);
+}
+
+function convertDrinkToName(drink: DrinkDTO | undefined) {
+    if (!drink) {
+        return 'Unknown Drink';
+    }
+    const nameMap = {
+        'BEER': 'Bier',
+        'WINE': 'Wein',
+        'LONGDRINK': 'Longdrink',
+        'LIQUEUR': 'Likör',
+        'LIQUOR': 'Schnapps'
+    }
+
+    return `${nameMap[drink.drinkType]} ${drink.volume}ml`;
+}
+
 export function useDrinks() {
 
     return {
         drinksState: readonly(drinksState),
         getAllDrinks,
-        createDrink
+        createDrink,
+        getDrinkById,
+        convertDrinkToName
     }
 }

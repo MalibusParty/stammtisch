@@ -1,14 +1,18 @@
 <template>
   <form
-    class="bg-darkess flex w-[450px] flex-col gap-4 rounded-xl p-6 shadow-md"
+  v-if="isLoaded"
+    class="flex w-[450px] flex-col gap-4 rounded-xl bg-darkess p-6 shadow-md"
     @submit.prevent=""
   >
-    <!-- <NumberInput
-      v-model=""
-      label="Bier 0,4l"
-    /> -->
+    <NumberInput
+      v-for="potentialTransaction in potentialDrinkTransactions"
+      :key="potentialTransaction.drink_id"
+      v-model="potentialTransaction.count"
+      :label="convertDrinkToName(getDrinkById(potentialTransaction.drink_id))"
+    />
     <BasicButton
       :outline="false"
+      @click="handleSubmit"
     >
       Eintragen
     </BasicButton>
@@ -18,7 +22,63 @@
 <script setup lang="ts">
 import BasicButton from '@/components/misc/BasicButton.vue';
 import NumberInput from '@/components/misc/NumberInput.vue';
-import { ref } from 'vue';
+import { onMounted, ref, type Ref, watch } from 'vue';
+import { useDrinks } from '@/stores/drinkStore';
+import { useLogin } from '@/stores/loginStore';
+import { useDrinkTransactions } from '@/stores/drinkTransactionStore';
+import type DrinkTransactionDTO from '@/interfaces/DrinkTransactionDTO';
 
+const { drinksState, getAllDrinks, getDrinkById, convertDrinkToName } = useDrinks();
+const { authState } = useLogin();
+const { addDrinkTransactions } = useDrinkTransactions();
 
+const isLoaded = ref(false);
+const potentialDrinkTransactions: Ref<DrinkTransactionDTO[]> = ref([]);
+
+onMounted(async () => {
+  if (drinksState.value.length === 0) {
+    await getAllDrinks();
+  }
+
+  isLoaded.value = true;
+});
+
+watch(
+  () => drinksState.value,
+  () => potentialDrinkTransactions.value = drinksState.value.map(drink => {
+    return {
+      drink_id: drink.drink_id,
+      count: 0,
+      username: authState.username,
+      timestamp: ''
+    };
+  })
+);
+
+async function handleSubmit() {
+  const transactionsToAdd = generateTransactions();
+  const worked = await addDrinkTransactions(transactionsToAdd);
+  if (worked) {
+    potentialDrinkTransactions.value.forEach(drinkTransaction => drinkTransaction.count = 0);
+    console.log('worked');
+  } else {
+    console.log('Error on posting transactions');
+  }
+}
+
+function generateTransactions() {
+  // TODO: replace with event selection
+  const currentDate = new Date().toISOString();
+
+  return potentialDrinkTransactions.value
+    .filter(drinkTransaction => drinkTransaction.count > 0)
+    .map(drinkTransaction => {
+      return {
+        drink_id: drinkTransaction.drink_id,
+        count: drinkTransaction.count,
+        username: drinkTransaction.username,
+        timestamp: currentDate
+      }
+    });
+}
 </script>
