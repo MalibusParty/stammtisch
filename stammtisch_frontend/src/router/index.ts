@@ -4,6 +4,7 @@ import LoginView from '@/views/LoginView.vue';
 import DrinksView from '@/views/DrinksView.vue';
 import CreateView from '@/views/CreateView.vue';
 import { useLogin } from '@/stores/loginStore';
+import { Role } from '@/enums/Role';
 
 const { authState } = useLogin();
 
@@ -36,7 +37,7 @@ const router = createRouter({
 router.beforeEach(async(to, from) => {
   if ((!authState.loggedIn || authState.token === '')  && to.name !== 'login') {
     return { name: 'login' };
-  } else if (to.name === 'create' && authState.username !== 'febe94') {
+  } else if (to.name === 'create' && authState.role !== Role.ADMIN) {
     return { name: 'home' }
   }
 });

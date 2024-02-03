@@ -1,8 +1,8 @@
 <template>
-  <div class="mt-4 w-full flex flex-col items-center">
+  <div class="mt-4 flex w-full flex-col items-center">
     Trage hier deinen Mist ein!
     <form
-      class="w-[450px] flex flex-col bg-darkess gap-4 shadow-md rounded-lg p-6"
+      class="bg-darkess flex w-[450px] flex-col gap-4 rounded-xl p-6 shadow-md"
       @submit.prevent=""
     >
       <NumberInput

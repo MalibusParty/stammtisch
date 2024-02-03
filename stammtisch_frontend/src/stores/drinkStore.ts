@@ -7,7 +7,6 @@ const drinksState = ref<DrinkDTO[]>([]);
 
 async function getAllDrinks() {
     const drinks = await getDrinks();
-    console.log(JSON.stringify(drinks));
     drinksState.value = drinks ?? [];
 }
 
@@ -17,7 +16,6 @@ async function createDrink(drink: DrinkDTO) {
     if (worked) {
         await getAllDrinks();
     }
-    console.log(`Posting drink worked: ${worked}`);
 }
 
 export function useDrinks() {

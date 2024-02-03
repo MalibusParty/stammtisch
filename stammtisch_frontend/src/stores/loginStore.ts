@@ -1,5 +1,6 @@
 import postLogin from "@/api/postLogin";
 import postRegister from "@/api/postRegister";
+import { Role } from "@/enums/Role";
 import type AuthResult from "@/interfaces/AuthResult";
 import { reactive, readonly } from "vue";
 
@@ -8,6 +9,7 @@ interface AuthState {
     lastname: string,
     username: string,
     token: string,
+    role: Role,
     loggedIn: boolean
 }
 
@@ -16,6 +18,7 @@ const authState = reactive<AuthState>({
     lastname: '',
     username: '',
     token: '',
+    role: Role.USER,
     loggedIn: false
 });
 
@@ -29,6 +32,7 @@ async function login(username: string, password: string) {
         authState.lastname = response.lastname;
         authState.username = response.username;
         authState.token = response.token;
+        authState.role = response.role;
         authState.loggedIn = true;
         sessionStorage.setItem('stammtisch', JSON.stringify(response));
     }
@@ -44,6 +48,7 @@ function logout() {
     authState.username = '';
     authState.loggedIn = false;
     authState.token = '';
+    authState.role = Role.USER;
     sessionStorage.clear();
 }
 
@@ -55,6 +60,7 @@ export function useLogin() {
         authState.lastname = authResult.lastname;
         authState.username = authResult.username;
         authState.token = authResult.token;
+        authState.role = authResult.role;
         authState.loggedIn = true;
     }
 

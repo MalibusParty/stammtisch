@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tech.felixruf.stammtisch.enums.Role;
 
 @Data
 @Builder
@@ -15,5 +16,6 @@ public class AuthenticationResponse {
     private String firstname;
     private String lastname;
     private String token;
+    private Role role;
 }
 

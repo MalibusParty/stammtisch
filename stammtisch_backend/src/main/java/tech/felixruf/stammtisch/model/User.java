@@ -50,6 +50,7 @@ public class User implements UserDetails {
 
     private String password;
 
+    @Getter
     @Enumerated(EnumType.STRING)
     private Role role;
 

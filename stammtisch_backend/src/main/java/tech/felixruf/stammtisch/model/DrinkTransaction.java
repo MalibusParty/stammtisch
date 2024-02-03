@@ -46,4 +46,8 @@ public class DrinkTransaction {
     @Setter
     @ManyToOne
     private Drink drink;
+
+    @Getter
+    @Setter
+    private int count;
 }

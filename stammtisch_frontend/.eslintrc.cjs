@@ -1,3 +1,5 @@
+import path from 'path'
+
 /* eslint-env node */
 require('@rushstack/eslint-patch/modern-module-resolution')
 
@@ -7,7 +9,8 @@ module.exports = {
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@vue/eslint-config-typescript',
-    '@vue/eslint-config-prettier/skip-formatting'
+    '@vue/eslint-config-prettier/skip-formatting',
+    'plugin:tailwindcss/recommended'
   ],
   overrides: [
     {
@@ -22,5 +25,10 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
-  }
+  },
+  settings: {
+    tailwindcss: {
+      config: path.join(__dirname, './tailwind.config.js'),
+    },
+  },
 }

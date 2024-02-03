@@ -16,7 +16,7 @@
           text="Eintragen"
         />
         <NavigationLink
-          v-if="authState.username === 'febe94'"
+          v-if="authState.role === Role.ADMIN"
           to="create"
           text="Erstellen"
         />
@@ -40,6 +40,7 @@
 import { RouterView } from 'vue-router';
 import NavigationLink from '@/components/navigation/NavigationLink.vue';
 import { useLogin } from './stores/loginStore';
+import { Role } from './enums/Role';
 
 const { logout, authState } = useLogin();
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<div class="p-4 rounded-lg shadow-md bg-darkess max-w-[100%] md:max-w-[1100px]">
+	<div class="p-4 rounded-xl shadow-md bg-darkess max-w-[100%] md:max-w-[1100px]">
 		<h3
 			class="text-primary font-italic text-2xl"
 		>
