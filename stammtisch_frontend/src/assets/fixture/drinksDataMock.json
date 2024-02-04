@@ -1,0 +1,95 @@
+{
+    "febe94": {
+        "2024-02-03": {
+            "BEER": {
+                "volume": 1300
+            },
+            "WINE": {
+                "volume": 0
+            },
+            "LONGDRINK": {
+                "volume": 0
+            },
+            "LIQUEUR": {
+                "volume": 0
+            },
+            "LIQUOR": {
+                "volume": 0
+            }
+        },
+        "2024-02-10": {
+            "BEER": {
+                "volume": 900
+            },
+            "WINE": {
+                "volume": 0
+            },
+            "LONGDRINK": {
+                "volume": 0
+            },
+            "LIQUEUR": {
+                "volume": 0
+            },
+            "LIQUOR": {
+                "volume": 0
+            }
+        }
+    },
+    "fuerst": {
+        "2024-02-03": {
+            "BEER": {
+                "volume": 2000
+            },
+            "WINE": {
+                "volume": 0
+            },
+            "LONGDRINK": {
+                "volume": 0
+            },
+            "LIQUEUR": {
+                "volume": 0
+            },
+            "LIQUOR": {
+                "volume": 0
+            }
+        }
+    },
+    "maester": {
+        "2024-02-03": {
+            "BEER": {
+                "volume": 1700
+            },
+            "WINE": {
+                "volume": 0
+            },
+            "LONGDRINK": {
+                "volume": 0
+            },
+            "LIQUEUR": {
+                "volume": 0
+            },
+            "LIQUOR": {
+                "volume": 0
+            }
+        }
+    },
+    "sebi": {
+        "2024-02-03": {
+            "BEER": {
+                "volume": 1000
+            },
+            "WINE": {
+                "volume": 0
+            },
+            "LONGDRINK": {
+                "volume": 0
+            },
+            "LIQUEUR": {
+                "volume": 0
+            },
+            "LIQUOR": {
+                "volume": 0
+            }
+        }
+    }
+}

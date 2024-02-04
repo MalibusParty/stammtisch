@@ -1,17 +1,17 @@
 <template>
   <div
-    class="w-full min-h-screen mt-4 flex flex-col items-center"
+    class="mt-4 flex min-h-screen w-full flex-col items-center"
   >
     <DrinkCompareChart
-      v-if="drinksData"
+      v-if="DrinkTransactionsState.drinksData"
       class="w-full md:h-[80vh]"
       :users="users"
       :series-data="series"
       :title="'Cumulative Drinks'"
     />
     <button
-      class="p-2 bg-slate-300 rounded-lg shadow-md mt-4"
-      @click="getAllDrinks"
+      class="mt-4 rounded-lg bg-slate-300 p-2 shadow-md"
+      @click="getAllDrinkTransactions"
     >
       Get Drinks
     </button>
@@ -20,26 +20,17 @@
 
 <script setup lang="ts">
 import DrinkCompareChart from '@/components/charts/DrinkCompareChart.vue';
-import { computed, onMounted, ref } from 'vue';
-import { type DrinksData, useMockBeerData } from '@/stores/MockBeerData';
+import { computed, onMounted } from 'vue';
 import type { StackedBar } from '@/interfaces/BarCharts';
-import { useDrinks } from '@/stores/drinkStore';
+import { useDrinkTransactions } from '@/stores/drinkTransactionStore';
+import { DrinkType } from '@/enums/DrinkType';
 
-const { DrinksState, generateUserData, getDrinkData } = useMockBeerData();
-const { drinksState, getAllDrinks } = useDrinks();
+const { DrinkTransactionsState, getAllDrinkTransactions } = useDrinkTransactions();
 
-const drinksData = ref<DrinksData | null>(null);
+const users = computed(() => DrinkTransactionsState.drinksData ? Object.keys(DrinkTransactionsState.drinksData) : []);
 
-const users = computed(() => {
-  if (drinksData.value) {
-    return Object.keys(drinksData.value)
-  }
-  return [];
-})
-
-onMounted(() => {
-  generateUserData(['Felix', 'Igi', 'Levi', 'Rafi', 'Stefan', 'Sebi'], 3);
-  drinksData.value = getDrinkData(DrinksState.data);
+onMounted(async () => {
+  await getAllDrinkTransactions();
 });
 
 
@@ -48,33 +39,36 @@ const series = computed<StackedBar[]>(() => {
     {
       name: "Bier",
       type: 'column',
-      data: drinksData.value ? Object.values(drinksData.value).map(data => data.beer) : []
+      data: DrinkTransactionsState.drinksData ? getAllDataForDrink(DrinkType.BEER) : []
     },
     {
       name: "Wein",
       type: 'column',
-      data: users.value.map(user => drinksData.value?.[user].wine) as number[]
+      data: DrinkTransactionsState.drinksData ? getAllDataForDrink(DrinkType.WINE) : []
     },
     {
       name: "Longdrinks",
       type: 'column',
-      data: users.value.map(user => drinksData.value?.[user].longdrink) as number[]
+      data: DrinkTransactionsState.drinksData ? getAllDataForDrink(DrinkType.LONGDRINK) : []
     },
     {
       name: "Likör",
       type: 'column',
-      data: users.value.map(user => drinksData.value?.[user].liqueur) as number[]
+      data: DrinkTransactionsState.drinksData ? getAllDataForDrink(DrinkType.LIQUEUR) : []
     },
     {
       name: "Schnapps",
       type: 'column',
-      data: users.value.map(user => drinksData.value?.[user].liquor) as number[]
+      data: DrinkTransactionsState.drinksData ? getAllDataForDrink(DrinkType.LIQUOR) : []
     }
   ]
 });
 
-function updateChart() {
-  generateUserData(['Felix', 'Igi', 'Levi', 'Rafi', 'Stefan', 'Sebi'], 5);
-  drinksData.value = getDrinkData(DrinksState.data);
+function getAllDataForDrink(type: DrinkType) {
+  return Object.values(DrinkTransactionsState.drinksData)
+    .map(data => Object.values(data)
+    .reduce((acc, val) => {
+      return acc + val[type].volume
+    },0));
 }
 </script>

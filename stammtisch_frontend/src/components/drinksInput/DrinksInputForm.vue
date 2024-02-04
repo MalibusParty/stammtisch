@@ -1,6 +1,6 @@
 <template>
   <form
-  v-if="isLoaded"
+    v-if="isLoaded"
     class="flex w-[450px] flex-col gap-4 rounded-xl bg-darkess p-6 shadow-md"
     @submit.prevent=""
   >
@@ -40,19 +40,13 @@ onMounted(async () => {
     await getAllDrinks();
   }
 
+  potentialDrinkTransactions.value = getPotentialTransactions();
   isLoaded.value = true;
 });
 
 watch(
   () => drinksState.value,
-  () => potentialDrinkTransactions.value = drinksState.value.map(drink => {
-    return {
-      drink_id: drink.drink_id,
-      count: 0,
-      username: authState.username,
-      timestamp: ''
-    };
-  })
+  () => potentialDrinkTransactions.value = getPotentialTransactions()
 );
 
 async function handleSubmit() {
@@ -80,5 +74,16 @@ function generateTransactions() {
         timestamp: currentDate
       }
     });
+}
+
+function getPotentialTransactions() {
+  return drinksState.value.map(drink => {
+    return {
+      drink_id: drink.drink_id,
+      count: 0,
+      username: authState.username,
+      timestamp: ''
+    };
+  });
 }
 </script>

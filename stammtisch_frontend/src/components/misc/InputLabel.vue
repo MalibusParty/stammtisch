@@ -18,7 +18,7 @@
         :placeholder="labelText"
         :min="min"
         :required="required"
-        class="w-full truncate border-none bg-[rgba(0,0,0,0)] text-[14px] text-primary font-medium invalid:border-autumn focus:outline-none focus:bg-transparent autofill:bg-transparent active:bg-transparent"
+        class="w-full truncate border-none bg-[rgba(0,0,0,0)] text-[14px] font-medium text-primary autofill:bg-transparent invalid:border-autumn focus:bg-transparent focus:outline-none active:bg-transparent"
       >
       <XMarkIcon
         v-if="value !== '' && xButtonActive === true"

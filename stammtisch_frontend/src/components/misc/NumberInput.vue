@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full h-full gap-1">
+  <div class="flex size-full flex-col gap-1">
     <span
       class="ml-4 flex flex-row items-center gap-1"
       :class="darkLabel ? 'text-background' : 'text-primary fill-primary'"
@@ -8,11 +8,11 @@
       {{ label }}
     </span>
     <div
-      class="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center grid-rows-1 shadow-md rounded-full"
+      class="grid grid-cols-[auto_minmax(0,1fr)_auto] grid-rows-1 items-center rounded-full shadow-md"
       :class="outline ? 'text-primary bg-background border-[1px] border-primary' : 'bg-primary text-background'"
     >
       <button
-        class="h-full py-2 px-4 border-r-2 rounded-l-full font-bold transition-colors"
+        class="h-full rounded-l-full border-r-2 px-4 py-2 font-bold transition-colors"
         :class="outline ? 'border-primary active:bg-darkess' : 'border-background active:bg-peach'"
         type="button"
         @click="value > 0 ? value -= 1 : void 0"
@@ -22,12 +22,12 @@
         />
       </button>
       <span
-        class="text-center font-bold font-italic"
+        class="text-center font-italic font-bold"
       >
         {{ value }}
       </span>
       <button
-        class="h-full py-2 px-4 border-l-2 rounded-r-full font-bold transition-colors"
+        class="h-full rounded-r-full border-l-2 px-4 py-2 font-bold transition-colors"
         :class="outline ? 'border-primary active:bg-darkess' : 'border-background active:bg-peach'"
         type="button"
         @click="value += 1"

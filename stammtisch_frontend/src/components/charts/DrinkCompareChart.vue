@@ -1,7 +1,7 @@
 <template>
-	<div class="p-4 rounded-xl shadow-md bg-darkess max-w-[100%] md:max-w-[1100px]">
+	<div class="max-w-[100%] rounded-xl bg-darkess p-4 shadow-md md:max-w-[1100px]">
 		<h3
-			class="text-primary font-italic text-2xl"
+			class="font-italic text-2xl text-primary"
 		>
 			{{ title }}
 		</h3>

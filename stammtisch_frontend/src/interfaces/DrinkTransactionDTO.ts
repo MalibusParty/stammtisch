@@ -1,6 +1,5 @@
-export default interface DrinkTransactionDTO {
-    drink_id: number,
-    count: number,
-    username: string,
-    timestamp: string
+import type { DrinkTransaction } from "./DrinkTransaction";
+
+export default interface DrinkTransactionDTO extends DrinkTransaction {
+    username: string
 }
