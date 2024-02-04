@@ -15,6 +15,7 @@ import tech.felixruf.stammtisch.dto.DrinkDTO;
 import tech.felixruf.stammtisch.dto.DrinkTransactionDTO;
 import tech.felixruf.stammtisch.model.Drink;
 import tech.felixruf.stammtisch.service.DrinkService;
+import tech.felixruf.stammtisch.service.StompInfoService;
 
 
 @RestController
@@ -23,10 +24,12 @@ public class DrinkController {
 
     Logger logger = LoggerFactory.getLogger(DrinkController.class);
 
-    public final DrinkService drinkService;
+    private final DrinkService drinkService;
+    private final StompInfoService stompInfoService;
 
-    public DrinkController(DrinkService drinkService) {
+    public DrinkController(DrinkService drinkService, StompInfoService stompInfoService) {
         this.drinkService = drinkService;
+        this.stompInfoService = stompInfoService;
     }
 
     @GetMapping
@@ -38,6 +41,7 @@ public class DrinkController {
     public ResponseEntity<Boolean> postAddDrink(@RequestBody DrinkDTO drinkDTO) {
         Drink drink = drinkService.addDrink(drinkDTO.drinkType(), drinkDTO.volume());
         logger.info("Added new drink: {} {}ml", drink.getDrinkType(), drink.getVolume());
+        stompInfoService.sendInfo("drinks", DrinkDTO.from(drink));
         return ResponseEntity.ok(true);
     }
 
@@ -53,16 +57,9 @@ public class DrinkController {
     
     @PostMapping("/transactions/all")
     public ResponseEntity<Boolean> postDrinkTransaction(@RequestBody List<DrinkTransactionDTO> drinkTransactions) {
-        for (DrinkTransactionDTO transactionDTO : drinkTransactions) {
-            logger.info("id: {}, count: {}, user: {}, date: {}",
-                transactionDTO.drink_id(),
-                transactionDTO.count(),
-                transactionDTO.username(),
-                transactionDTO.timestamp()
-            );
-        }
         try {
             boolean result = drinkService.addAllDrinkTransactions(drinkTransactions);
+            stompInfoService.sendInfo("transactions", drinkTransactions);
             return ResponseEntity.ok(result);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(false);
