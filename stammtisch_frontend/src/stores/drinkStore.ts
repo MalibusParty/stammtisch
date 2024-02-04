@@ -18,6 +18,10 @@ async function createDrink(drink: DrinkDTO) {
     }
 }
 
+function receiveAngebotMessages() {
+    
+}
+
 function getDrinkById(drinkId: number): DrinkDTO | undefined {
     return drinksState.value.find(drink => drink.drink_id === drinkId);
 }
