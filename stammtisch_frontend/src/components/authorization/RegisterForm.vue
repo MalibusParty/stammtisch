@@ -1,9 +1,9 @@
 <template>
   <form
-    class="p-4 rounded-lg bg-darkess shadow-md"
+    class="bg-darkess rounded-lg p-4 shadow-md"
     @submit.prevent=""
   >
-    <h2 class="w-full text-center text-outline text-xl font-head font-bold">
+    <h2 class="text-outline font-head w-full text-center text-xl font-bold">
       Register
     </h2>
     <InputLabel
@@ -37,7 +37,7 @@
       :outline="false"
       @click="handleRegister"
     >
-      Login
+      Registrieren
     </BasicButton>
   </form>
 </template>

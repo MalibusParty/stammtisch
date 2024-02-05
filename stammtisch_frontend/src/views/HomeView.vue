@@ -30,7 +30,9 @@ const { DrinkTransactionsState, getAllDrinkTransactions } = useDrinkTransactions
 const users = computed(() => DrinkTransactionsState.drinksData ? Object.keys(DrinkTransactionsState.drinksData) : []);
 
 onMounted(async () => {
-  await getAllDrinkTransactions();
+  if (Object.keys(DrinkTransactionsState.drinksData).length === 0) {
+    await getAllDrinkTransactions();
+  }
 });
 
 

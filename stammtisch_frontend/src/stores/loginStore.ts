@@ -22,7 +22,7 @@ const authState = reactive<AuthState>({
     loggedIn: false
 });
 
-const session = sessionStorage.getItem('stammtisch');
+let session = sessionStorage.getItem('stammtisch');
 
 async function login(username: string, password: string) {
     const response = await postLogin(username, password);
@@ -35,6 +35,7 @@ async function login(username: string, password: string) {
         authState.role = response.role;
         authState.loggedIn = true;
         sessionStorage.setItem('stammtisch', JSON.stringify(response));
+        session = sessionStorage.getItem('stammtisch');
     }
 }
 
@@ -43,13 +44,14 @@ async function register(firstname: string, lastname: string, username: string, p
 }
 
 function logout() {
+    authState.loggedIn = false;
     authState.firstname = '';
     authState.lastname = '';
     authState.username = '';
-    authState.loggedIn = false;
     authState.token = '';
     authState.role = Role.USER;
     sessionStorage.clear();
+    session = null;
 }
 
 export function useLogin() {
@@ -61,7 +63,7 @@ export function useLogin() {
         authState.username = authResult.username;
         authState.token = authResult.token;
         authState.role = authResult.role;
-        authState.loggedIn = true;
+        authState.loggedIn = authResult.token !== '';
     }
 
     return {

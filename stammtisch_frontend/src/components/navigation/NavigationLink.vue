@@ -1,7 +1,7 @@
 <template>
-  <nav class="h-full flex items-center">
+  <nav class="flex h-full items-center">
     <RouterLink
-      class="h-full flex items-center cursor-pointer font-bold px-2 hover:text-primary"
+      class="hover:text-primary flex h-full cursor-pointer items-center px-2 font-bold"
       :class="{'text-primary': isCurrentRoute}"
       :to="`/${to}`"
     >
@@ -13,7 +13,7 @@
     </span>
     <ArrowRightEndOnRectangleIcon
       v-else
-      class="h-[30px] hover:fill-primary"
+      class="hover:fill-primary h-[30px]"
     />
     </RouterLink>
   </nav>

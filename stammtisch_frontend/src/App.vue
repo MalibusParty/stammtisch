@@ -20,12 +20,12 @@
           to="create"
           text="Erstellen"
         />
-        <NavigationLink
-          class="ml-auto"
-          to="login"
-          text="Logout"
-          @click="logout"
-        />
+        <nav class="ml-auto flex h-full items-center">
+          <ArrowRightEndOnRectangleIcon
+            class="hover:fill-primary h-[30px]"
+            @click="handleLogoutBtn"
+          />
+        </nav>
       </div>
     </header>
     <div
@@ -41,6 +41,44 @@ import { RouterView } from 'vue-router';
 import NavigationLink from '@/components/navigation/NavigationLink.vue';
 import { useLogin } from './stores/loginStore';
 import { Role } from './enums/Role';
+import { useDrinks } from './stores/drinkStore';
+import { onMounted, watch } from 'vue';
+import { useDrinkTransactions } from './stores/drinkTransactionStore';
+import { useRouter } from 'vue-router';
+import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/solid';
 
 const { logout, authState } = useLogin();
+const { receiveDrinks, endReceiveDrinks, getAllDrinks} = useDrinks();
+const { receiveDrinkTransactions, endReceiveTransactions, getAllDrinkTransactions } = useDrinkTransactions();
+const router = useRouter();
+
+onMounted(async () => {
+  if (authState.loggedIn) {
+    await getAllDrinkTransactions();
+    await getAllDrinks();
+    receiveDrinks();
+    receiveDrinkTransactions();
+  }
+});
+
+watch(
+  () => authState.loggedIn,
+  async (afterLoggedIn, prevLoggedIn) => {
+    console.log(`Login Status changed from ${prevLoggedIn} to ${afterLoggedIn} and is now ${authState.loggedIn}`);
+    if (!prevLoggedIn && afterLoggedIn) {
+      console.log('getting data after login');
+      await getAllDrinkTransactions();
+      await getAllDrinks();
+      receiveDrinks();
+      receiveDrinkTransactions();
+    }
+  }
+);
+
+function handleLogoutBtn() {
+  endReceiveDrinks();
+  endReceiveTransactions();
+  logout();
+  router.push({ name: 'login' });
+}
 </script>

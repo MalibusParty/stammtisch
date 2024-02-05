@@ -1,9 +1,15 @@
 import getDrinks from "@/api/getDrinks";
 import postDrink from "@/api/postDrink";
 import type DrinkDTO from "@/interfaces/DrinkDTO";
+import { Client } from "@stomp/stompjs";
 import { readonly, ref } from "vue";
+import getStompClient from "@/services/StompFactory";
+
+const DEST = '/topic/drinks';
+
 
 const drinksState = ref<DrinkDTO[]>([]);
+let stompClient: Client | null = null;
 
 async function getAllDrinks() {
     const drinks = await getDrinks();
@@ -11,15 +17,26 @@ async function getAllDrinks() {
 }
 
 async function createDrink(drink: DrinkDTO) {
-    const worked = await postDrink(drink);
+    await postDrink(drink);
+}
 
-    if (worked) {
-        await getAllDrinks();
+function receiveDrinks() {
+    if (!stompClient) {
+        stompClient = getStompClient(DEST, (message) => {
+            const drinkDTO: DrinkDTO = JSON.parse(message.body);
+            drinksState.value.push(drinkDTO);
+        });
+    }
+
+    if (stompClient && !stompClient.active) {
+        stompClient.activate();
     }
 }
 
-function receiveAngebotMessages() {
-    
+function endReceiveDrinks() {
+    if (stompClient !== null && stompClient.active) {
+        stompClient.deactivate();
+    }
 }
 
 function getDrinkById(drinkId: number): DrinkDTO | undefined {
@@ -48,6 +65,8 @@ export function useDrinks() {
         getAllDrinks,
         createDrink,
         getDrinkById,
-        convertDrinkToName
+        convertDrinkToName,
+        receiveDrinks,
+        endReceiveDrinks
     }
 }

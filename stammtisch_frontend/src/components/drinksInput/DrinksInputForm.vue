@@ -45,7 +45,7 @@ onMounted(async () => {
 });
 
 watch(
-  () => drinksState.value,
+  drinksState.value,
   () => potentialDrinkTransactions.value = getPotentialTransactions()
 );
 

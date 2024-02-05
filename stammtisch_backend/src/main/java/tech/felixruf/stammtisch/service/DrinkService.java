@@ -1,5 +1,7 @@
 package tech.felixruf.stammtisch.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
@@ -20,7 +22,8 @@ import java.util.LinkedList;
 @Service
 @Transactional
 public class DrinkService {
-    
+    Logger logger = LoggerFactory.getLogger(DrinkService.class);
+
     private final DrinkRepository drinkRepository;
     private final DrinkTransactionRepository drinkTransactionRepository;
     private final UserRepository userRepository;
@@ -63,9 +66,10 @@ public class DrinkService {
                 }
             }
             drinkTransactionRepository.saveAll(transactions);
+            logger.info("Adding all transactions worked");
             return true;
         }
-
+        logger.info("Adding all transactions didn't work");
         return false;
     }
 

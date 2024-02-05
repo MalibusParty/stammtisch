@@ -17,7 +17,10 @@ public class SecurityConfiguration {
 
     private final String[] WHITE_LIST_URL = {
             "/api/login",
-            "/api/auth/**"
+            "/api/auth/**",
+            "/stomp",
+            "/stomp/**",
+            "/stomp/topic/**"
     };
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;

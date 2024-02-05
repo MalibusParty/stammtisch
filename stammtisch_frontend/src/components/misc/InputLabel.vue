@@ -3,12 +3,12 @@
     <label
       v-if="labelText !== '' && labelVisible"
       :for="labelText"
-      class="w-full px-4 text-start text-xs font-medium text-primary"
+      class="text-primary w-full px-4 text-start text-xs font-medium"
     >
       {{ labelText }}
     </label>
     <div
-      class="invalid flex h-[46px] w-full flex-row items-center overflow-hidden rounded-full border-[1px] border-solid border-primary px-4 py-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/75 focus-visible:ring-offset-2"
+      class="invalid border-primary focus-visible:ring-primary/75 flex h-[46px] w-full flex-row items-center overflow-hidden rounded-full border-[1px] border-solid px-4 py-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
     >
       <input
         :id="labelText"
@@ -18,7 +18,7 @@
         :placeholder="labelText"
         :min="min"
         :required="required"
-        class="w-full truncate border-none bg-[rgba(0,0,0,0)] text-[14px] font-medium text-primary autofill:bg-transparent invalid:border-autumn focus:bg-transparent focus:outline-none active:bg-transparent"
+        class="text-primary invalid:border-autumn w-full truncate border-none bg-[rgba(0,0,0,0)] text-[14px] font-medium autofill:bg-transparent focus:bg-transparent focus:outline-none active:bg-transparent"
       >
       <XMarkIcon
         v-if="value !== '' && xButtonActive === true"

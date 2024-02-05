@@ -4,6 +4,9 @@ import type DrinkTransactionDTO from "@/interfaces/DrinkTransactionDTO";
 import { reactive } from "vue";
 import { useDrinks } from "./drinkStore";
 import type { DrinkType } from "@/enums/DrinkType";
+import { useLogin } from "./loginStore";
+import { Client } from "@stomp/stompjs";
+import getStompClient from "@/services/StompFactory";
 
 export interface DrinksData {
     [username: string]: DataPoints
@@ -28,12 +31,53 @@ interface IDrinkTransactionState {
     isLoading: boolean
 }
 
+const DEST = '/topic/transactions';
+
 const { drinksState, getAllDrinks, getDrinkById } = useDrinks();
 
 const DrinkTransactionsState = reactive<IDrinkTransactionState>({
     drinksData: {},
     isLoading: false
 });
+
+let stompClient: Client | null = null;
+
+function mergeDrinksData(drinkTransactions: DrinkTransactionDTO[]) {
+    drinkTransactions.forEach(drinkTransactionDTO => {
+        if (!(drinkTransactionDTO.username in DrinkTransactionsState.drinksData)) {
+            DrinkTransactionsState.drinksData = {};
+        }
+
+        const dataVal = getDataValFromTransaction(drinkTransactionDTO);
+
+        if (dataVal) {
+            setUpDataPoint(DrinkTransactionsState.drinksData, dataVal.type, dataVal.volume, drinkTransactionDTO.timestamp, drinkTransactionDTO.username);
+            DrinkTransactionsState.drinksData[drinkTransactionDTO.username][drinkTransactionDTO.timestamp][dataVal.type].volume += dataVal.volume;
+        }
+    });
+}
+
+function setUpDataPoint(drinksData: DrinksData, type: DrinkType, volume: number, timestamp: string, username: string) {
+    if (!(timestamp in drinksData[username])) {
+        drinksData[username][timestamp] = {
+            'BEER':  { volume: 0 },
+            'WINE': { volume: 0 },
+            'LONGDRINK': { volume: 0 },
+            'LIQUEUR': { volume: 0 },
+            'LIQUOR':{ volume: 0 }
+        }
+    }
+}
+
+function getDataValFromTransaction(drinkTransaction: DrinkTransactionDTO) {
+    const drink = getDrinkById(drinkTransaction.drink_id);
+    if (drink) {
+        return {
+            type: drink.drinkType,
+            volume: drink.volume * drinkTransaction.count
+        }
+    }
+}
 
 export function useDrinkTransactions() {
 
@@ -75,31 +119,30 @@ export function useDrinkTransactions() {
         return output;
     }
 
-    function getDataValFromTransaction(drinkTransaction: DrinkTransactionDTO) {
-        const drink = getDrinkById(drinkTransaction.drink_id);
-        if (drink) {
-            return {
-                type: drink.drinkType,
-                volume: drink.volume * drinkTransaction.count
-            }
+    function receiveDrinkTransactions() {
+        if (!stompClient) {
+            stompClient = getStompClient(DEST, (message) => {
+                const drinkTransactionDTOs: DrinkTransactionDTO[] = JSON.parse(message.body);
+                mergeDrinksData(drinkTransactionDTOs);
+            });
+        }
+
+        if (stompClient && !stompClient.active) {
+            stompClient.activate();
         }
     }
-
-    function setUpDataPoint(drinksData: DrinksData, type: DrinkType, volume: number, timestamp: string, username: string) {
-        if (!(timestamp in drinksData[username])) {
-            drinksData[username][timestamp] = {
-                'BEER':  { volume: 0 },
-                'WINE': { volume: 0 },
-                'LONGDRINK': { volume: 0 },
-                'LIQUEUR': { volume: 0 },
-                'LIQUOR':{ volume: 0 }
-            }
+    
+    function endReceiveTransactions() {
+        if (stompClient !== null && stompClient.active) {
+            stompClient.deactivate();
         }
     }
 
     return {
         DrinkTransactionsState,
         getAllDrinkTransactions,
-        addDrinkTransactions
+        addDrinkTransactions,
+        receiveDrinkTransactions,
+        endReceiveTransactions
     }
 }

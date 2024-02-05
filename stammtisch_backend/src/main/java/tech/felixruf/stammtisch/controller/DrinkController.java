@@ -62,6 +62,7 @@ public class DrinkController {
             stompInfoService.sendInfo("transactions", drinkTransactions);
             return ResponseEntity.ok(result);
         } catch (Exception e) {
+            logger.error("Error on posting transactions: ", e);
             return ResponseEntity.internalServerError().body(false);
         }
     }

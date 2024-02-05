@@ -1,10 +1,10 @@
 <template>
   <div
-    class="w-full flex flex-col items-center mt-4"
+    class="mt-4 flex w-full flex-col items-center"
   >
-    <div class="mb-4 w-fit flex flex-row">
+    <div class="mb-4 flex w-fit flex-row">
       <BasicButton
-        class="mt-8  mr-4 w-fit"
+        class="mr-4  mt-8 w-fit"
         :outline="!isLoginForm"
         @click="isLoginForm = true"
       >
