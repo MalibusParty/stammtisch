@@ -34,10 +34,11 @@ const chartOptions = computed(() => {
 			id: 'stackedBarChart',
 			stacked: true,
 			foreColor: '#ffb4a7',
-      fontFamily: 'Roboto',
-      toolbar: {
-        show: false
-      }
+			height: '90%',
+			fontFamily: 'Roboto',
+			toolbar: {
+				show: false
+			}
 		},
     tooltip: {
       enabled: false
@@ -68,6 +69,7 @@ const chartOptions = computed(() => {
 				options: {
 					plotOptions: {
 						bar: {
+							columnWidth: '30%',
 							horizontal: true
 						}
 					},

@@ -4,7 +4,6 @@ import type DrinkTransactionDTO from "@/interfaces/DrinkTransactionDTO";
 import { reactive } from "vue";
 import { useDrinks } from "./drinkStore";
 import type { DrinkType } from "@/enums/DrinkType";
-import { useLogin } from "./loginStore";
 import { Client } from "@stomp/stompjs";
 import getStompClient from "@/services/StompFactory";
 

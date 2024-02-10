@@ -1,22 +1,24 @@
 <template>
-  <form
-    v-if="isLoaded"
-    class="flex w-[450px] flex-col gap-4 rounded-xl bg-darkess p-6 shadow-md"
-    @submit.prevent=""
-  >
-    <NumberInput
-      v-for="potentialTransaction in potentialDrinkTransactions"
-      :key="potentialTransaction.drink_id"
-      v-model="potentialTransaction.count"
-      :label="convertDrinkToName(getDrinkById(potentialTransaction.drink_id))"
-    />
-    <BasicButton
-      :outline="false"
-      @click="handleSubmit"
+  <div class="w-full min-w-[300px] max-w-[450px] p-2">
+    <form
+      v-if="isLoaded"
+      class="flex w-full min-w-[300px] max-w-[450px] flex-col gap-4 rounded-xl bg-darkess p-6 shadow-md"
+      @submit.prevent=""
     >
-      Eintragen
-    </BasicButton>
-  </form>
+      <NumberInput
+        v-for="potentialTransaction in potentialDrinkTransactions"
+        :key="potentialTransaction.drink_id"
+        v-model="potentialTransaction.count"
+        :label="convertDrinkToName(getDrinkById(potentialTransaction.drink_id))"
+      />
+      <BasicButton
+        :outline="false"
+        @click="handleSubmit"
+      >
+        Eintragen
+      </BasicButton>
+    </form>
+  </div>
 </template>
 
 <script setup lang="ts">

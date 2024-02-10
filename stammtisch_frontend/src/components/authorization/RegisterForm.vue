@@ -1,9 +1,10 @@
 <template>
   <form
-    class="bg-darkess rounded-lg p-4 shadow-md"
+  v-if="!isRegistered"
+    class="rounded-lg bg-darkess p-4 shadow-md"
     @submit.prevent=""
   >
-    <h2 class="text-outline font-head w-full text-center text-xl font-bold">
+    <h2 class="w-full text-center font-head text-xl font-bold text-outline">
       Register
     </h2>
     <InputLabel
@@ -40,6 +41,17 @@
       Registrieren
     </BasicButton>
   </form>
+  <div
+    v-else
+    class="flex flex-row items-center justify-center gap-2 rounded-lg bg-darkess p-4 shadow-md"
+  >
+    <CheckCircleIcon
+      class="size-8 fill-green-600"
+    />
+    <span class="text-center text-bright">
+      Registrieren hat funktioniert!
+    </span>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -48,8 +60,11 @@ import { ref } from 'vue';
 import { useLogin } from '@/stores/loginStore';
 import BasicButton from '../misc/BasicButton.vue';
 import { ButtonType } from '@/enums/ButtonType';
+import { CheckCircleIcon } from '@heroicons/vue/24/solid';
 
 const { register } = useLogin();
+
+const isRegistered = ref(false);
 
 const registerData = ref({
   firstname: '',
@@ -59,6 +74,9 @@ const registerData = ref({
 });
 
 async function handleRegister() {
+  if (isRegistered.value) {
+    return;
+  }
   const result = await register(
     registerData.value.firstname,
     registerData.value.lastname,
@@ -72,6 +90,7 @@ async function handleRegister() {
     registerData.value.lastname = ''
     registerData.value.username = ''
     registerData.value.password = ''
+    isRegistered.value = true;
   } else {
     console.log('Error on register');
   }

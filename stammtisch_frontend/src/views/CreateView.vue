@@ -1,8 +1,8 @@
 <template>
-  <div class="mt-4 flex w-full flex-col items-center">
+  <div class="mt-4 flex w-full flex-col items-center p-2">
     <h2>Erstelle einen neuen Drink</h2>
     <form
-      class="flex w-[450px] flex-col gap-4 rounded-xl bg-darkess p-6 shadow-md"
+      class="flex w-full min-w-[300px] max-w-[450px] flex-col gap-4 rounded-xl bg-darkess p-6 shadow-md"
       @submit.prevent="handleCreate"
     >
       <Listbox v-model="drinkType">
@@ -18,7 +18,7 @@
             v-for="option in options"
             :key="option"
             :value="option"
-            class="p-2 border-b-[1px] border-primary hover:text-bright last:border-b-0"
+            class="border-b-[1px] border-primary p-2 last:border-b-0 hover:text-bright"
           >
             {{ option }}
           </ListboxOption>
@@ -27,7 +27,7 @@
       <InputLabel
         v-model="volume"
         type="number"
-        label-text="Volume in 100ml"
+        label-text="Volume in 10ml"
         :required="true"
       />
       <BasicButton
@@ -66,7 +66,7 @@ async function handleCreate() {
   const drink: DrinkDTO = {
     drink_id: 0,
     drinkType: drinkType.value,
-    volume: parseInt(volume.value) * 100,
+    volume: parseInt(volume.value) * 10,
   };
 
   await createDrink(drink);

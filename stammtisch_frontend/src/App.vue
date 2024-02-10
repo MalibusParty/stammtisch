@@ -1,12 +1,12 @@
 <template>
   <div
-    class="flex min-h-screen flex-col bg-background text-bright font-sans max-w-[100vw] overflow-x-hidden"
+    class="flex min-h-screen max-w-[100vw] flex-col overflow-x-hidden bg-background font-sans text-bright"
   >
     <header
       v-if="authState.loggedIn"
     >
       <div
-        class="flex flex-row justify-center items-center bg-darkess gap-3 top-0 h-[60px] w-full shadow-md px-4 md:justify-start"
+        class="top-0 flex h-[60px] w-full flex-row items-center justify-center gap-3 bg-darkess px-4 shadow-md md:justify-start"
       >
         <NavigationLink
           text="Home"
@@ -22,14 +22,14 @@
         />
         <nav class="ml-auto flex h-full items-center">
           <ArrowRightEndOnRectangleIcon
-            class="hover:fill-primary h-[30px]"
+            class="h-[30px] hover:fill-primary"
             @click="handleLogoutBtn"
           />
         </nav>
       </div>
     </header>
     <div
-      class="relative grow-[1]"
+      class="relative flex grow-[1]"
     >
       <RouterView />
     </div>
