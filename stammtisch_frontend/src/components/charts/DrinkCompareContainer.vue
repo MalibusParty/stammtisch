@@ -86,16 +86,17 @@ const series = computed<StackedBar[]>(() => {
 
 function getAllDataForDrink(type: DrinkType, isYearly: boolean = false) {
   return Object.values(DrinkTransactionsState.drinksData)
-    .filter(data => {
-      console.log(`Data: ${JSON.stringify(data)}`);
-      if (isYearly) {
-        return new Date(Object.keys(data)[0]).getFullYear() === new Date().getFullYear();
-      }
-      return true;
-    })
+    .map(data => Object.entries(data)
+      .filter(drinkData => {
+        if (isYearly) {
+          return new Date(drinkData[0]).getFullYear() === new Date().getFullYear();
+        }
+        return true;
+      })
+    )
     .map(data => Object.values(data)
       .reduce((acc, val) => {
-        return acc + val[type].volume
+        return acc + val[1][type].volume
       },0)
     );
 }

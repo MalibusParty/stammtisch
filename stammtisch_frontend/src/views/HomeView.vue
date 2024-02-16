@@ -38,6 +38,9 @@
       <DrinkCompareContainer
         v-if="selectedOption === options[1]"
       />
+      <PersonalBeerContainer
+        v-if="selectedOption === options[2]"
+      />
     </div>
   </div>
 </template>
@@ -48,6 +51,7 @@ import { useDrinkTransactions } from '@/stores/drinkTransactionStore';
 import { useUsers } from '@/stores/userStore';
 import DrinkCompareContainer from '@/components/charts/DrinkCompareContainer.vue';
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue';
+import PersonalBeerContainer from '@/components/charts/PersonalBeerContainer.vue';
 
 const { DrinkTransactionsState, getAllDrinkTransactions } = useDrinkTransactions();
 const { fetchUsers } = useUsers();
@@ -55,7 +59,7 @@ const { fetchUsers } = useUsers();
 const options = [
   'Bier',
   'Gesamt',
-  'Persönlich',
+  'Persönlich Bier',
   'Pro Veranstaltung',
   'Pro Veranstaltung Persönlich'
 ]
