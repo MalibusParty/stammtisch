@@ -32,17 +32,19 @@ const chartOptions = computed(() => {
       fontFamily: 'Roboto',
       toolbar: {
         show: false,
-      },
+      }
     },
     tooltip: {
-      enabled: false,
+      enabled: true,
+      theme: 'dark'
     },
     xaxis: {
       categories: props.dates
     },
     stroke: {
-      width: 1,
+      width: 3,
       colors: ['#fff'],
+      curve: 'smooth'
     },
   }
 });

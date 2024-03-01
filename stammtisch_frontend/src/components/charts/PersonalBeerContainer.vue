@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div
+    class="flex w-full flex-col items-center gap-4"
+  >
     <PersonalBeerChart
       v-if="DrinkTransactionsState.drinksData"
       class="min-md:h-[500px] w-full"
