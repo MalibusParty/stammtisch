@@ -13,15 +13,15 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8080/'
-      },
-      '/stomp': {
-        target: 'http://localhost:8080/',
-        ws: true
-      }
-    }
-  }
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'https://stammtisch-api.felixruf.tech/'
+  //     },
+  //     '/stomp': {
+  //       target: 'https://stammtisch-api.felixruf.tech/',
+  //       ws: true
+  //     }
+  //   }
+  // }
 })

@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  ## for local use
+  # database:
+  #   image: postgres:15.5
+  #   container_name: stammtisch_data
+  #   volumes:
+  #     - stammtisch:/var/lib/postgresql/data
+  #   restart: unless-stopped
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   container_name: pgadmin4_stammtisch
+  #   restart: always
+  #   ports:
+  #     - "8888:80"
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: test@test.de
+  #     PGADMIN_DEFAULT_PASSWORD: postgres
+  #   volumes:
+  #     - pgadmin-stammtisch:/var/lib/pgadmin
+
+  backend:
+    image: malibusparty/projects:stammtisch
+    container_name: stammtisch-backend
+    ports:
+      - 9901:8080
+    restart: unless-stopped
+
+volumes:
+  stammtisch:
+  pgadmin-stammtisch:

@@ -1,10 +1,11 @@
 
 export default async function useApi<Type>(route: string, method: string, body: string | undefined = undefined, contentType: string | null = null, token: string | null = null): Promise<Type | undefined> {
+    const serverAndRoute = import.meta.env.PROD ? `https://${import.meta.env.VITE_BACKEND_ADRESS}${route}` : route;
     try {
         const controller = new AbortController();
         const abortId = setTimeout(() => controller.abort(), 8000);
 
-        const response = await fetch(route, {
+        const response = await fetch(serverAndRoute, {
             method: method,
             headers: buildHeader(
                 contentType,
