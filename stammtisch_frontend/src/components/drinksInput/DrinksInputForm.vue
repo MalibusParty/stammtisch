@@ -29,6 +29,7 @@ import { useDrinks } from '@/stores/drinkStore';
 import { useLogin } from '@/stores/loginStore';
 import { useDrinkTransactions } from '@/stores/drinkTransactionStore';
 import type DrinkTransactionDTO from '@/interfaces/DrinkTransactionDTO';
+import { useRouter } from 'vue-router';
 
 const { drinksState, getAllDrinks, getDrinkById, convertDrinkToName } = useDrinks();
 const { authState } = useLogin();
@@ -36,6 +37,7 @@ const { addDrinkTransactions } = useDrinkTransactions();
 
 const isLoaded = ref(false);
 const potentialDrinkTransactions: Ref<DrinkTransactionDTO[]> = ref([]);
+const router = useRouter();
 
 onMounted(async () => {
   if (drinksState.value.length === 0) {
@@ -56,9 +58,7 @@ async function handleSubmit() {
   const worked = await addDrinkTransactions(transactionsToAdd);
   if (worked) {
     potentialDrinkTransactions.value.forEach(drinkTransaction => drinkTransaction.count = 0);
-    console.log('worked');
-  } else {
-    console.log('Error on posting transactions');
+    router.push('/');
   }
 }
 

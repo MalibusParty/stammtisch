@@ -64,9 +64,7 @@ onMounted(async () => {
 watch(
   () => authState.loggedIn,
   async (afterLoggedIn, prevLoggedIn) => {
-    console.log(`Login Status changed from ${prevLoggedIn} to ${afterLoggedIn} and is now ${authState.loggedIn}`);
     if (!prevLoggedIn && afterLoggedIn) {
-      console.log('getting data after login');
       await getAllDrinkTransactions();
       await getAllDrinks();
       receiveDrinks();

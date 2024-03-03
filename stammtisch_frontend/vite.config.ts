@@ -19,7 +19,7 @@ export default defineConfig({
   //       target: 'https://stammtisch-api.felixruf.tech/'
   //     },
   //     '/stomp': {
-  //       target: 'https://stammtisch-api.felixruf.tech/',
+  //       target: 'wss://stammtisch-api.felixruf.tech/',
   //       ws: true
   //     }
   //   }

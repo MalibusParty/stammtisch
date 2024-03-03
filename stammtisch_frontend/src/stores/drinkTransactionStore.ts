@@ -43,10 +43,6 @@ let stompClient: Client | null = null;
 
 function mergeDrinksData(drinkTransactions: DrinkTransactionDTO[]) {
     drinkTransactions.forEach(drinkTransactionDTO => {
-        if (!(drinkTransactionDTO.username in DrinkTransactionsState.drinksData)) {
-            DrinkTransactionsState.drinksData = {};
-        }
-
         const dataVal = getDataValFromTransaction(drinkTransactionDTO);
 
         if (dataVal) {
@@ -57,7 +53,17 @@ function mergeDrinksData(drinkTransactions: DrinkTransactionDTO[]) {
 }
 
 function setUpDataPoint(drinksData: DrinksData, type: DrinkType, volume: number, timestamp: string, username: string) {
-    if (!(timestamp in drinksData[username])) {
+    if (!(username in drinksData)) {
+        drinksData[username] = {
+            [timestamp]: {
+                'BEER':  { volume: 0 },
+                'WINE': { volume: 0 },
+                'LONGDRINK': { volume: 0 },
+                'LIQUEUR': { volume: 0 },
+                'LIQUOR':{ volume: 0 }
+            }
+        };
+    } else if (!(timestamp in drinksData[username])) {
         drinksData[username][timestamp] = {
             'BEER':  { volume: 0 },
             'WINE': { volume: 0 },

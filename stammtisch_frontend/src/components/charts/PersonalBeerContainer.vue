@@ -29,11 +29,14 @@ const dates = computed(() => {
 });
 
 const series = computed(() => {
-  return Object.entries(DrinkTransactionsState.drinksData[authState.username])
-  .sort((a, b) => {
-    if (new Date(a[0]) > new Date(b[0])) return 1;
-    else return -1;
-  })
-  .map(datapoint => datapoint[1]['BEER'].volume);
+  if (authState.username in DrinkTransactionsState.drinksData) {
+    return Object.entries(DrinkTransactionsState.drinksData[authState.username])
+      .sort((a, b) => {
+        if (new Date(a[0]) > new Date(b[0])) return 1;
+        else return -1;
+      })
+      .map(datapoint => datapoint[1]['BEER'].volume);
+  }
+  return [];
 });
 </script>

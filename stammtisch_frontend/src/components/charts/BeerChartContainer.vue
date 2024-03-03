@@ -34,12 +34,24 @@ import { useDrinkTransactions } from '@/stores/drinkTransactionStore';
 import { computed, ref } from 'vue';
 import { DrinkType } from '@/enums/DrinkType';
 import BasicButton from '../misc/BasicButton.vue';
+import { useUsers } from '@/stores/userStore';
 
 const { DrinkTransactionsState } = useDrinkTransactions();
+const { usersState } = useUsers();
 
 const isYearly = ref(false);
 
-const users = computed(() => Object.keys( DrinkTransactionsState.drinksData));
+const users = computed(() => {
+  if (DrinkTransactionsState.drinksData) {
+    return Object.keys( DrinkTransactionsState.drinksData).map(username => {
+      if (usersState.value[username]) {
+        return usersState.value[username];
+      }
+      return username;
+    });
+  }
+  return [];
+});
 
 const seriesData = computed(() => {
   return Object.values(DrinkTransactionsState.drinksData)

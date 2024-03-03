@@ -1,6 +1,6 @@
 <template>
   <div class="mt-4 flex w-full flex-col items-center">
-    Trage hier deinen Mist ein!
+    Trage hier deine Getränke ein!
     <DrinksInputForm />
   </div>
 </template>

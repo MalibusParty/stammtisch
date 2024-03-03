@@ -1,7 +1,7 @@
 import { useLogin } from "@/stores/loginStore";
 import { Client, type messageCallbackType } from "@stomp/stompjs";
 
-const WSURL = `ws://${import.meta.env.PROD ? import.meta.env.VITE_BACKEND_ADRESS : window.location.host}/stomp`;
+const WSURL = `wss://${import.meta.env.PROD ? import.meta.env.VITE_BACKEND_ADRESS : window.location.host}/stomp`;
 
 const { authState } = useLogin();
 
